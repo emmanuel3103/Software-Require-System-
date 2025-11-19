@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Especificación de Requisitos de Software - Aplicación EDI 301</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 2rem;
+      background-color: #f7f7f7;
+      color: #222;
+    }
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 2rem 2.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      border-radius: 8px;
+    }
+    h1, h2, h3, h4 {
+      color: #13436b;
+    }
+    h1 {
+      border-bottom: 2px solid #13436b;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    h2 {
+      margin-top: 2rem;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 0.25rem;
+    }
+    h3 {
+      margin-top: 1.5rem;
+    }
+    h4 {
+      margin-top: 1rem;
+    }
+    ul {
+      padding-left: 1.5rem;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+    }
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+    th, td {
+      padding: 0.5rem 0.75rem;
+      vertical-align: top;
+    }
+    th {
+      background-color: #f0f0f0;
+      text-align: left;
+    }
+    .small {
+      font-size: 0.9rem;
+    }
+    .req-block {
+      border: 1px solid #e0e0e0;
+      padding: 0.75rem 1rem;
+      margin: 0.75rem 0;
+      border-radius: 4px;
+      background-color: #fafafa;
+    }
+    .req-block strong {
+      display: inline-block;
+      min-width: 11rem;
+    }
+    .toc ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .toc li {
+      margin-bottom: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+<main>
+
+  <header>
+    <h1>Especificación de requisitos de software</h1>
+    <p><strong>Proyecto:</strong> APLICACIÓN EDI 301 PARA LA GESTIÓN DE FAMILIAS Y ALUMNOS DE LA UNIVERSIDAD LINDA VISTA</p>
+    <p><em>Febrero</em></p>
+  </header>
+
+  <section class="toc">
+    <h2>Contenido</h2>
+    <ul>
+      <li>1 Introducción
+        <ul>
+          <li>1.1 Propósito</li>
+          <li>1.2 Alcance</li>
+          <li>1.3 Personal involucrado</li>
+          <li>1.4 Definiciones, acrónimos y abreviaturas</li>
+          <li>1.5 Referencias</li>
+          <li>1.6 Resumen</li>
+        </ul>
+      </li>
+      <li>2 Descripción general
+        <ul>
+          <li>2.1 Perspectiva del producto</li>
+          <li>2.2 Funcionalidad del producto</li>
+          <li>2.3 Características de los usuarios</li>
+          <li>2.4 Restricciones</li>
+          <li>2.5 Suposiciones y dependencias</li>
+          <li>2.6 Evolución previsible del sistema</li>
+        </ul>
+      </li>
+      <li>3 Requisitos específicos
+        <ul>
+          <li>3.1 Requisitos comunes de los interfaces
+            <ul>
+              <li>3.1.2 Interfaces de usuario</li>
+              <li>3.1.3 Interfaces de hardware</li>
+              <li>3.1.4 Interfaces de software</li>
+              <li>3.1.5 Interfaces de comunicación</li>
+            </ul>
+          </li>
+          <li>3.2 Requisitos funcionales</li>
+          <li>3.3 Requisitos no funcionales
+            <ul>
+              <li>3.3.1 Requisitos de rendimiento</li>
+              <li>3.3.2 Seguridad</li>
+              <li>3.3.3 Fiabilidad</li>
+              <li>3.3.4 Disponibilidad</li>
+              <li>3.3.5 Mantenibilidad</li>
+              <li>3.3.6 Portabilidad</li>
+            </ul>
+          </li>
+          <li>3.4 Otros requisitos
+            <ul>
+              <li>3.4.1 Requisitos Culturales</li>
+              <li>3.4.2 Requisitos Políticos</li>
+              <li>3.4.3 Requisitos Legales</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>4 Anexos
+        <ul>
+          <li>4.1 Casos de uso</li>
+          <li>4.2 Diagrama de Clases</li>
+          <li>4.3 Diagramas de secuencia</li>
+          <li>4.4 Caso de uso general del sistema</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>1 Introducción</h2>
+
+    <h3>1.1 Propósito</h3>
+    <p>
+      El propósito de este documento es describir de manera detallada los requerimientos funcionales y no funcionales de la aplicación EDI 301, cuyo objetivo es automatizar la asignación de alumnos a familias de empleados, mejorar la comunicación y optimizar la gestión de eventos del programa EDI 301 en la universidad.
+    </p>
+
+    <h3>1.2 Alcance</h3>
+    <p>
+      La aplicación permitirá gestionar familias, asignar alumnos internos, enviar notificaciones, administrar eventos, generar reportes y garantizar la seguridad y privacidad de la información mediante integración con SQL Server.
+    </p>
+
+    <h3>1.3 Personal involucrado</h3>
+
+    <table>
+      <tr>
+        <th>Nombre</th>
+        <th>Rol</th>
+        <th>Categoría profesional</th>
+        <th>Responsabilidades</th>
+        <th>Información de contacto</th>
+        <th>Aprobación</th>
+      </tr>
+      <tr>
+        <td>Juvenal</td>
+        <td>Capellán Universitario</td>
+        <td>Lic. en Teología</td>
+        <td>Administrador de programa EDI-301</td>
+        <td>( )</td>
+        <td>Aprobado ✅</td>
+      </tr>
+      <tr>
+        <td>Aldahir Ballina Nuñez</td>
+        <td>Desarrollador principal</td>
+        <td>Estudiante</td>
+        <td>Encargado de la realización del proyecto</td>
+        <td><a href="mailto:Aldahir.ballina@ulv.edu.mx">Aldahir.ballina@ulv.edu.mx</a></td>
+        <td>Aprobado ✅</td>
+      </tr>
+      <tr>
+        <td>Emmanuel Chavez Ventura</td>
+        <td>Desarrollador</td>
+        <td>Estudiante</td>
+        <td>Desarrollar el proyecto</td>
+        <td><a href="mailto:Emmanuel.chavez@ulv.edu.mx">Emmanuel.chavez@ulv.edu.mx</a></td>
+        <td>Aprobado ✅</td>
+      </tr>
+    </table>
+
+    <h3>1.4 Definiciones, acrónimos y abreviaturas</h3>
+    <ul>
+      <li><strong>EDI 301:</strong> Programa de apoyo de alumnos a familias de empleados de la universidad.</li>
+      <li><strong>Alumno interno:</strong> Estudiante oficialmente inscrito en la universidad.</li>
+      <li><strong>Capellán:</strong> Responsable principal del programa, con privilegios de administrador.</li>
+    </ul>
+
+    <h3>1.5 Referencias</h3>
+    <table>
+      <tr>
+        <th>Referencia</th>
+        <th>Título</th>
+        <th>Ruta</th>
+        <th>Fecha</th>
+        <th>Autor</th>
+      </tr>
+      <tr>
+        <td>-</td>
+        <td>Introducción a la ingeniería del software</td>
+        <td>-</td>
+        <td>2005</td>
+        <td>Alonso, F., &amp; Martínez, L.</td>
+      </tr>
+      <tr>
+        <td>-</td>
+        <td>Análisis de requerimientos de software conducente al reúso de artefactos</td>
+        <td>-</td>
+        <td>2004</td>
+        <td>López, M. D.</td>
+      </tr>
+    </table>
+
+    <h3>1.6 Resumen</h3>
+    <p>
+      Este documento especifica los requisitos funcionales y no funcionales para el desarrollo de una aplicación web y móvil llamada “APLICACIÓN EDI 301 PARA LA GESTIÓN DE FAMILIAS Y ALUMNOS DE LA UNIVERSIDAD LINDA VISTA”, que se desarrollará a partir del semestre 2025-B. La aplicación busca resolver problemas en la gestión manual del programa EDI 301, como la asignación de alumnos a familias de empleados, la organización de eventos, la comunicación mediante notificaciones y la generación de reportes administrativos.
+    </p>
+  </section>
+
+  <section>
+    <h2>2 Descripción general</h2>
+
+    <h3>2.1 Perspectiva del producto</h3>
+    <p>
+      La aplicación EDI 301 se desarrolla como una solución tecnológica para automatizar el proceso manual de asignación de alumnos a familias de empleados en la Universidad Linda Vista, integrándose con la base de datos institucional para garantizar información actualizada y confiable. El sistema permitirá gestionar familias y alumnos, organizar y registrar eventos, enviar notificaciones, generar reportes y controlar accesos según roles (capellán, padres/empleados y alumnos), con el objetivo de centralizar la información, optimizar la comunicación y mejorar la administración del programa EDI 301.
+    </p>
+
+    <h3>2.2 Funcionalidad del producto</h3>
+    <p>La aplicación EDI 301 para la gestión de familias y alumnos está diseñada para llevar a cabo las siguientes funcionalidades principales:</p>
+    <ul>
+      <li><strong>Gestión de Familias y Alumnos:</strong> Crear y administrar familias, asignar alumnos internos, actualizar su estado (activo, en práctica, egresado) y restringir cambios sin autorización.</li>
+      <li><strong>Control de Acceso y Roles:</strong> Garantizar que los empleados y sus cónyuges puedan gestionar su familia, mientras que los alumnos solo tienen acceso de visualización, asegurando la privacidad de la información.</li>
+      <li><strong>Notificaciones y Comunicación:</strong> Enviar avisos a padres sobre eventos, permitir confirmación de asistencia, registrar ausencias anticipadas y dirigir mensajes a grupos específicos.</li>
+      <li><strong>Gestión de Eventos:</strong> Crear y administrar eventos con detalles (fecha, lugar, requisitos), registrar la participación de familias y permitir la carga de evidencias fotográficas bajo reglas establecidas.</li>
+      <li><strong>Privacidad y Seguridad de Información:</strong> Proteger datos personales, gestionar notificaciones de cumpleaños, restringir la publicación de imágenes a las autorizadas por los padres e integrar la información con la base de datos institucional.</li>
+      <li><strong>Administración y Reportes:</strong> Generar reportes sobre asignación y estado de alumnos, asistencia a eventos y listas filtradas, además de gestionar accesos para nuevos empleados.</li>
+    </ul>
+
+    <h3>2.3 Características de los usuarios</h3>
+
+    <h4>Tipo de usuario: Administrador (Capellán)</h4>
+    <table class="small">
+      <tr><th>Formación</th><td>Personal de la universidad con rol administrativo y conocimiento del programa EDI 301.</td></tr>
+      <tr><th>Habilidades</th><td>Manejo de sistemas institucionales, organización de alumnos y familias, gestión de eventos.</td></tr>
+      <tr><th>Actividades</th><td>Crear y administrar familias, asignar alumnos, gestionar eventos, enviar notificaciones, generar reportes y administrar accesos.</td></tr>
+    </table>
+
+    <h4>Tipo de usuario: Padres / Empleados</h4>
+    <table class="small">
+      <tr><th>Formación</th><td>Empleados de la universidad y sus cónyuges, sin necesidad de formación técnica.</td></tr>
+      <tr><th>Habilidades</th><td>Uso básico de aplicaciones móviles/web, comunicación mediante la app, gestión de información familiar.</td></tr>
+      <tr><th>Actividades</th><td>Ver y actualizar información de su familia, recibir notificaciones, confirmar asistencia a eventos, subir fotos autorizadas y consultar cumpleaños.</td></tr>
+    </table>
+
+    <h4>Tipo de usuario: Hijo (estudiante)</h4>
+    <table class="small">
+      <tr><th>Formación</th><td>Estudiantes universitarios asignados a familias dentro del programa.</td></tr>
+      <tr><th>Habilidades</th><td>Uso básico de la aplicación en modalidad de consulta.</td></tr>
+      <tr><th>Actividades</th><td>Visualizar la información de su familia, consultar eventos y actividades, publicar en el feed, pero sin posibilidad de modificar datos.</td></tr>
+    </table>
+
+    <h3>2.4 Restricciones</h3>
+    <p><strong>Hardware:</strong> (Se asume disponibilidad de dispositivos adecuados).</p>
+    <p><strong>Permisos:</strong></p>
+    <ul>
+      <li>Solo usuarios registrados pueden acceder a la aplicación.</li>
+      <li>Los permisos de usuario están jerarquizados: Administrador, Empleado y Estudiante. Cada rol tendrá acceso únicamente a las funciones correspondientes a su nivel.</li>
+      <li>La creación, modificación o eliminación de datos críticos (como calificaciones de limpieza o asignación de estudiantes a familias) solo puede ser realizada por usuarios con permisos de Administrador.</li>
+    </ul>
+
+    <p><strong>Gestión de seguridad:</strong></p>
+    <ul>
+      <li>Toda la información almacenada debe ser cifrada en la base de datos.</li>
+      <li>Las contraseñas de los usuarios deben cumplir con políticas de complejidad: mínimo 8 caracteres, incluyendo mayúsculas, minúsculas, números y caracteres especiales.</li>
+    </ul>
+
+    <p><strong>Accesos restringidos:</strong></p>
+    <ul>
+      <li>Los estudiantes solo pueden visualizar su información personal y los anuncios dirigidos a ellos.</li>
+      <li>Los empleados pueden visualizar y modificar datos de sus familias asignadas, pero no tienen acceso a la información de otros empleados.</li>
+      <li>Los administradores tienen acceso completo a todas las funciones, pero cualquier operación sobre datos sensibles requiere confirmación doble o autenticación adicional.</li>
+    </ul>
+
+    <h3>2.5 Suposiciones y dependencias</h3>
+
+    <table class="small">
+      <tr>
+        <th>Suposiciones</th>
+        <th>Dependencias</th>
+      </tr>
+      <tr>
+        <td>
+          <ul>
+            <li><strong>Infraestructura tecnológica existente:</strong> Se asume que la universidad cuenta con la infraestructura tecnológica necesaria (servidores, red y equipos de cómputo) para soportar la operación del sistema EDI 301 y garantizar su disponibilidad.</li>
+            <li><strong>Disponibilidad y validez de datos:</strong> Se asume que los datos proporcionados por el sistema institucional de la universidad (por ejemplo, matrículas, nombres, correos, etc.) son correctos, actualizados y están disponibles para su uso mediante los servicios o bases de datos institucionales.</li>
+            <li><strong>Adopción y capacitación de usuarios:</strong> Se asume que los usuarios finales (capellanes, empleados y alumnos) recibirán la capacitación adecuada y adoptarán el uso del sistema de manera voluntaria y responsable.</li>
+            <li><strong>Estabilidad de las reglas de negocio:</strong> Se asume que las reglas de negocio y los procesos institucionales relacionados con la asignación de alumnos, gestión de familias y control de asistencia no cambiarán significativamente durante el desarrollo del sistema.</li>
+            <li><strong>Funcionalidad de los dispositivos de escaneo:</strong> Se asume que los dispositivos móviles o lectores de código QR utilizados para el registro de asistencia funcionarán correctamente y contarán con conectividad estable.</li>
+            <li><strong>Unicidad de las credenciales:</strong> Se asume que cada usuario registrado en el sistema posee credenciales únicas, evitando duplicidad de cuentas y garantizando la autenticidad en el acceso.</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li><strong>Entrega y funcionamiento de los lectores de códigos de barras (si aplica):</strong> El correcto funcionamiento del sistema depende de la entrega oportuna y del adecuado desempeño de los lectores o dispositivos utilizados para el escaneo de códigos QR o de barras durante los registros de asistencia.</li>
+            <li><strong>Integración con sistemas existentes (si aplica):</strong> La implementación del sistema EDI 301 depende de la correcta integración con las bases de datos y sistemas institucionales existentes, como los registros de alumnos y empleados de la universidad.</li>
+            <li><strong>Aprobaciones y retroalimentación de las partes interesadas:</strong> El avance y validación de los módulos del sistema dependen de la disponibilidad, revisión y aprobación por parte de los capellanes, personal administrativo y demás partes interesadas.</li>
+            <li><strong>Cumplimiento de normativas legales:</strong> El sistema depende del cumplimiento de las políticas institucionales de protección de datos personales y de las normativas legales aplicables al manejo de información académica y administrativa.</li>
+            <li><strong>Disponibilidad del equipo de desarrollo:</strong> El progreso del proyecto depende de la disponibilidad continua del equipo de desarrollo y de los recursos técnicos necesarios para cumplir con los plazos establecidos.</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+
+    <h3>2.6 Evolución previsible del sistema</h3>
+    <p>
+      El sistema EDI 301 está diseñado con una arquitectura modular que permitirá su crecimiento y adaptación a nuevas necesidades institucionales. Se prevé la siguiente evolución:
+    </p>
+    <ol>
+      <li><strong>Ampliación de funcionalidades:</strong> Incluir reportes más completos, estadísticas del programa y herramientas de seguimiento.</li>
+      <li><strong>Integración con otros sistemas institucionales:</strong> Conectar la app con bases de datos académicas, asistencia y comunicación de la universidad.</li>
+      <li><strong>Escalabilidad y seguridad:</strong> Garantizar que el sistema soporte más usuarios, migrar a infraestructura en la nube y reforzar la seguridad con autenticación avanzada.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>3 Requisitos específicos</h2>
+
+    <h3>3.1 Requisitos comunes de los interfaces</h3>
+
+    <h4>3.1.2 Interfaces de usuario</h4>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RIU-1.1</p>
+      <p><strong>Nombre de requisito:</strong> Adopción de estilo visual institucional</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Universidad</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RIU-1.2</p>
+      <p><strong>Nombre de requisito:</strong> Navegación intuitiva y clara</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Usuario</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RIU-1.3</p>
+      <p><strong>Nombre de requisito:</strong> Diseño responsivo para múltiples dispositivos</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Usuario</p>
+      <p><strong>Prioridad del requisito:</strong> Media/Deseado</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RIU-1.4</p>
+      <p><strong>Nombre de requisito:</strong> Uso de elementos de interfaz estándar</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Diseño</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RIU-1.5</p>
+      <p><strong>Nombre de requisito:</strong> Interfaz en idioma español</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Usuario</p>
+      <p><strong>Prioridad del requisito:</strong> Media/Deseado</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RIU-1.6</p>
+      <p><strong>Nombre de requisito:</strong> Diseño centrado en las necesidades del usuario</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Usuario</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RIU-1.7</p>
+      <p><strong>Nombre de requisito:</strong> Pantalla de registro de asistencia clara y funcional</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Usuario</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <h4>3.1.3 Interfaces de hardware</h4>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RIH-2.1</p>
+      <p><strong>Nombre de requisito:</strong> Interfaz lógica con lector de credenciales</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Sistema</p>
+      <p><strong>Prioridad del requisito:</strong> Media/Deseado</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RIU-2.2</p>
+      <p><strong>Nombre de requisito:</strong> Especificación del tipo de conexión</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Sistema</p>
+      <p><strong>Prioridad del requisito:</strong> Media/Deseado</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RIU-2.3</p>
+      <p><strong>Nombre de requisito:</strong> Optimización de batería</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Sistema</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RIU-1.4</p>
+      <p><strong>Nombre de requisito:</strong> Compatible con múltiples dispositivos</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Sistema</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <h4>3.1.4 Interfaces de software</h4>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RIS-3.1</p>
+      <p><strong>Nombre de requisito:</strong> Integración con el Sistema de Gestión de Estudiantes</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Sistema</p>
+      <p><strong>Prioridad del requisito:</strong> Media/Deseado</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RIS-3.2</p>
+      <p><strong>Nombre de requisito:</strong> Obtener información básica del estudiante</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Sistema</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RIS-3.3</p>
+      <p><strong>Nombre de requisito:</strong> Interfaz vía API (consumo de datos)</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Sistema</p>
+      <p><strong>Prioridad del requisito:</strong> Media/Deseado</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RIS-3.4</p>
+      <p><strong>Nombre de requisito:</strong> Especificación de campos esperados en la respuesta</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Sistema</p>
+      <p><strong>Prioridad del requisito:</strong> Media/Deseado</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RIS-3.5</p>
+      <p><strong>Nombre de requisito:</strong> Especificación de códigos de error de la API</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Sistema</p>
+      <p><strong>Prioridad del requisito:</strong> Media/Deseado</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RIS-3.6</p>
+      <p><strong>Nombre de requisito:</strong> Definición de endpoints y métodos HTTP</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Sistema</p>
+      <p><strong>Prioridad del requisito:</strong> Media/Deseado</p>
+    </div>
+
+    <h4>3.1.5 Interfaces de comunicación</h4>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RIC-4.1</p>
+      <p><strong>Nombre de requisito:</strong> Comunicación segura con el servidor (HTTPS)</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Sistema</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RIC-4.2</p>
+      <p><strong>Nombre de requisito:</strong> Implementación de mecanismos de autenticación seguros</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Sistema</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RIC-4.3</p>
+      <p><strong>Nombre de requisito:</strong> Intercambio de datos con el servidor en JSON</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Sistema</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RIC-4.4</p>
+      <p><strong>Nombre de requisito:</strong> Definición de códigos de estado y mensajes de error</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Sistema</p>
+      <p><strong>Prioridad del requisito:</strong> Media/Deseado</p>
+    </div>
+
+    <h3>3.2 Requisitos funcionales</h3>
+
+    <h4>3.2.1 Requisito funcional 1: Gestionar familias e información</h4>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RF 1.1</p>
+      <p><strong>Nombre de requisito:</strong> Registrar una nueva familia con sus integrantes</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documentos de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RF 1.2</p>
+      <p><strong>Nombre de requisito:</strong> Editar información existente de las familias registradas</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RF 1.3</p>
+      <p><strong>Nombre de requisito:</strong> Eliminar familias del registro previa confirmación del capellán</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <h4>3.2.2 Requisito funcional 2: Restringir accesos según el rol</h4>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RF 2.1</p>
+      <p><strong>Nombre de requisito:</strong> Asignar automáticamente los permisos de acceso según el rol</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RF 2.2</p>
+      <p><strong>Nombre de requisito:</strong> Permitir al capellán acceso total a los módulos administrativos</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RF 2.3</p>
+      <p><strong>Nombre de requisito:</strong> Limitar a los alumnos el acceso solo a su familia asignada, notificaciones y al feed.</p>
+      <p><strong>Tipo:</strong> Restricción</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <h4>3.2.3 Requisito funcional 3: Envío de notificaciones y registro de ausencias</h4>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RF 3.1</p>
+      <p><strong>Nombre de requisito:</strong> Enviar notificaciones individuales o grupales a usuarios registrados</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RF 3.2</p>
+      <p><strong>Nombre de requisito:</strong> Notificar de ausencia (padre/hijo)</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RF 3.3</p>
+      <p><strong>Nombre de requisito:</strong> Notificar estado de actividad del alumno</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <h4>3.2.4 Requisito funcional 4: Gestionar y supervisar el contenido publicado</h4>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RF 4.1</p>
+      <p><strong>Nombre de requisito:</strong> Permitir al padre aprobar o rechazar publicaciones de los hijos</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RF 4.2</p>
+      <p><strong>Nombre de requisito:</strong> Permitir a los usuarios publicar en el feed sobre su familia</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RF 4.3</p>
+      <p><strong>Nombre de requisito:</strong> Registrar fecha y autor de cada publicación para seguimiento</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Media/Deseado</p>
+    </div>
+
+    <h4>3.2.5 Generar reportes de asignación, asistencias para evidencias</h4>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RF 5.1</p>
+      <p><strong>Nombre de requisito:</strong> Generar reportes en formato PDF y Excel</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Media/Deseado</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RF 5.2</p>
+      <p><strong>Nombre de requisito:</strong> Consultar estadísticas de asistencias por familia a eventos</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RF 5.3</p>
+      <p><strong>Nombre de requisito:</strong> Generar evidencias de eventos con formato</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <h4>3.2.6 Chat Privado por Familia</h4>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RF 6.1</p>
+      <p><strong>Nombre de requisito:</strong> Envío y recepción de mensajes familiares</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RF 6.2</p>
+      <p><strong>Nombre de requisito:</strong> Notificación de nuevos mensajes</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RF 6.3</p>
+      <p><strong>Nombre de requisito:</strong> Almacenamiento y visualización del historial de conversación</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RF 6.4</p>
+      <p><strong>Nombre de requisito:</strong> Control de acceso y privacidad del chat familiar</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <h3>3.3 Requisitos no funcionales</h3>
+
+    <h4>3.3.1 Requisitos de rendimiento</h4>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFR 1.1</p>
+      <p><strong>Nombre de requisito:</strong> Capacidad de concurrencia</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos NF</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFR 1.2</p>
+      <p><strong>Nombre de requisito:</strong> Tiempo de respuesta del sistema</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos NF</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFR 1.3</p>
+      <p><strong>Nombre de requisito:</strong> Eficiencia en el procesamiento de los datos</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos NF</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFR 1.4</p>
+      <p><strong>Nombre de requisito:</strong> Optimización en la carga de recursos</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos NF</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <h4>3.3.2 Seguridad</h4>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFS 2.1</p>
+      <p><strong>Nombre de requisito:</strong> Autenticación segura de usuarios</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFS 2.2</p>
+      <p><strong>Nombre de requisito:</strong> Cifrado de información sensible</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFS 2.3</p>
+      <p><strong>Nombre de requisito:</strong> Comunicación segura mediante HTTPS</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFS 2.4</p>
+      <p><strong>Nombre de requisito:</strong> Control de sesiones activas</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFS 2.5</p>
+      <p><strong>Nombre de requisito:</strong> Protección contra accesos no autorizados y vulnerabilidades comunes</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFS 2.6</p>
+      <p><strong>Nombre de requisito:</strong> Mecanismos para asegurar la integridad de la información crítica</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <h4>3.3.3 Fiabilidad</h4>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFF 3.1</p>
+      <p><strong>Nombre de requisito:</strong> Disponibilidad del servicio</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFF 3.2</p>
+      <p><strong>Nombre de requisito:</strong> Reparación ante fallos</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFF 3.3</p>
+      <p><strong>Nombre de requisito:</strong> Integridad de los datos</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <h4>3.3.4 Disponibilidad</h4>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFD 4.1</p>
+      <p><strong>Nombre de requisito:</strong> Disponibilidad del sistema el 99% del tiempo</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFD 4.2</p>
+      <p><strong>Nombre de requisito:</strong> Tolerancia a interrupciones</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <h4>3.3.5 Mantenibilidad</h4>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFM 5.1</p>
+      <p><strong>Nombre de requisito:</strong> Modularidad del sistema</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFM 5.2</p>
+      <p><strong>Nombre de requisito:</strong> Facilidad de actualización</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFM 5.3</p>
+      <p><strong>Nombre de requisito:</strong> Documentación técnica</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFM 5.4</p>
+      <p><strong>Nombre de requisito:</strong> Control de versiones</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFM 5.5</p>
+      <p><strong>Nombre de requisito:</strong> Generación de estadísticas de uso</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <h4>3.3.6 Portabilidad</h4>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFP 6.1</p>
+      <p><strong>Nombre de requisito:</strong> Interfaz web compatible con navegadores estándar en diferentes SO</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Media/Deseado</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFP 6.2</p>
+      <p><strong>Nombre de requisito:</strong> 95% del código ejecutado en el servidor</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Media/Deseado</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFP 6.3</p>
+      <p><strong>Nombre de requisito:</strong> Uso del lenguaje JavaScript para el backend por su portabilidad</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Media/Deseado</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFP 6.4</p>
+      <p><strong>Nombre de requisito:</strong> Despliegue en sistema operativo de servidor iOS y Android</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Media/Deseado</p>
+    </div>
+
+    <h3>3.4 Otros requisitos</h3>
+
+    <h4>3.4.1 Requisitos Culturales</h4>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFC 1.1</p>
+      <p><strong>Nombre de requisito:</strong> Adaptación del formato de fecha a la norma mexicana</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFC 1.2</p>
+      <p><strong>Nombre de requisito:</strong> Terminología consistente con el uso común en la Universidad</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <h4>3.4.2 Requisitos Políticos</h4>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFPO 2.1</p>
+      <p><strong>Nombre de requisito:</strong> Roles de acceso definidos según la estructura organizacional de la Universidad</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFPO 2.2</p>
+      <p><strong>Nombre de requisito:</strong> Posibilidad de generar reportes agregados para autoridades académicas</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Media/Deseado</p>
+    </div>
+
+    <h4>3.4.3 Requisitos Legales</h4>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFL 3.1</p>
+      <p><strong>Nombre de requisito:</strong> Cumplimiento con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (México)</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+
+    <div class="req-block">
+      <p><strong>Número de requisito:</strong> RNFL 3.2</p>
+      <p><strong>Nombre de requisito:</strong> Almacenamiento seguro de datos personales de acuerdo con la normativa vigente</p>
+      <p><strong>Tipo:</strong> Requisito</p>
+      <p><strong>Fuente del requisito:</strong> Documento de requisitos</p>
+      <p><strong>Prioridad del requisito:</strong> Alta/Esencial</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>4 Anexos</h2>
+
+    <h3>4.1 Casos de uso</h3>
+
+    <h4>CU-01: Iniciar sesión</h4>
+    <p><strong>Actores:</strong> Usuario (alumno/empleado), Sistema</p>
+    <p><strong>Descripción:</strong> El usuario accede con correo y contraseña.</p>
+    <p><strong>Precondiciones:</strong> Usuario registrado y activo.</p>
+    <p><strong>Flujo principal:</strong></p>
+    <ol>
+      <li>El usuario ingresa correo y contraseña.</li>
+      <li>El sistema valida credenciales.</li>
+      <li>El sistema genera <code>Session_token</code> y establece sesión.</li>
+      <li>El sistema muestra pantalla principal.</li>
+    </ol>
+    <p><strong>Flujos alternativos:</strong></p>
+    <ul>
+      <li>2a. Credenciales inválidas → muestra error, permite reintentar.</li>
+      <li>2b. Usuario inactivo.</li>
+    </ul>
+    <p><strong>Postcondiciones:</strong> Sesión iniciada.</p>
+
+    <h4>CU-02: Cerrar sesión</h4>
+    <p><strong>Actores:</strong> Usuario (alumno/empleado), Sistema</p>
+    <p><strong>Descripción:</strong> El usuario finaliza su sesión activa.</p>
+    <p><strong>Precondiciones:</strong> Sesión iniciada.</p>
+    <p><strong>Flujo principal:</strong></p>
+    <ol>
+      <li>El usuario solicita cerrar sesión.</li>
+      <li>El sistema invalida <code>Session_token</code>.</li>
+      <li>El sistema redirige a la pantalla de acceso.</li>
+    </ol>
+    <p><strong>Postcondiciones:</strong> No hay sesión activa.</p>
+
+    <h4>CU-03: Registrar usuario</h4>
+    <p><strong>Actores:</strong> Administrador, Sistema</p>
+    <p><strong>Descripción:</strong> Empleado autenticado con permiso.</p>
+    <p><strong>Precondiciones:</strong> Sesión iniciada.</p>
+    <p><strong>Flujo principal:</strong></p>
+    <ol>
+      <li>El Empleado ingresa datos obligatorios (matrícula/num. empleado).</li>
+      <li>El sistema valida unicidad (correo, matrícula/num. empleado).</li>
+      <li>El sistema crea cuenta y registra <code>Created_at</code>.</li>
+      <li>El sistema notifica el éxito.</li>
+    </ol>
+    <p><strong>Flujos alternativos:</strong></p>
+    <ul>
+      <li>2a. Datos duplicados o inválidos → mensaje de error.</li>
+    </ul>
+    <p><strong>Postcondiciones:</strong> Usuario creado.</p>
+
+    <h4>CU-04: Crear familia</h4>
+    <p><strong>Actores:</strong> Administrador, Sistema</p>
+    <p><strong>Descripción:</strong> Se crea un registro de familia para asociar integrantes.</p>
+    <p><strong>Precondiciones:</strong> Administrador con sesión iniciada.</p>
+    <p><strong>Flujo principal:</strong></p>
+    <ol>
+      <li>El Administrador captura datos básicos de la familia (num.empleado/apellidos).</li>
+      <li>El sistema valida y crea la familia <code>Created_at</code>.</li>
+      <li>El sistema confirma la creación.</li>
+    </ol>
+    <p><strong>Flujos alternativos:</strong></p>
+    <ul>
+      <li>2a. Datos duplicados o inválidos → mensaje de error.</li>
+    </ul>
+    <p><strong>Postcondiciones:</strong> Familia registrada.</p>
+
+    <h4>CU-05: Asignar integrante a familia</h4>
+    <p><strong>Actores:</strong> Administrador, Sistema</p>
+    <p><strong>Descripción:</strong> Asociar un usuario a una familia con su rol (alumno).</p>
+    <p><strong>Precondiciones:</strong> Familia y usuario existentes.</p>
+    <p><strong>Flujo principal:</strong></p>
+    <ol>
+      <li>Empleado busca usuario por matrícula/correo.</li>
+      <li>El Empleado selecciona familia y rol de parentesco.</li>
+      <li>El sistema registra la relación.</li>
+      <li>El sistema confirma.</li>
+    </ol>
+    <p><strong>Flujos alternativos:</strong></p>
+    <ul>
+      <li>1a. Usuario no existe → mensaje y sugerencia de crear.</li>
+    </ul>
+    <p><strong>Postcondiciones:</strong> Integrante asociado.</p>
+
+    <h4>CU-06: Consultar familia</h4>
+    <p><strong>Actores:</strong> Usuario (Alumno/Empleado/Administrador), Sistema</p>
+    <p><strong>Descripción:</strong> Buscar y visualizar la composición de una familia.</p>
+    <p><strong>Precondiciones:</strong> Sesión iniciada.</p>
+    <p><strong>Flujo principal:</strong></p>
+    <ol>
+      <li>Usuario ingresa criterio (matrícula, num. empleado o nombre).</li>
+      <li>El sistema busca y lista coincidencias.</li>
+      <li>Usuario selecciona familia.</li>
+      <li>El sistema muestra integrantes y datos clave.</li>
+    </ol>
+    <p><strong>Flujos alternativos:</strong></p>
+    <ul>
+      <li>2a. Sin resultados → mensaje “no se encontraron coincidencias”.</li>
+    </ul>
+    <p><strong>Postcondiciones:</strong> Información de familia visible.</p>
+
+    <h4>CU-07: Publicar anuncio</h4>
+    <p><strong>Actores:</strong> Administrador</p>
+    <p><strong>Descripción:</strong> Crear una publicación informativa para la comunidad.</p>
+    <p><strong>Precondiciones:</strong> Sesión iniciada, permiso para publicar.</p>
+    <p><strong>Flujo principal:</strong></p>
+    <ol>
+      <li>El Administrador redacta título y contenido (opcional imagen).</li>
+      <li>El sistema valida y guarda la publicación (<code>Created_at</code>).</li>
+      <li>El sistema notifica el éxito y dispara avisos/notificaciones.</li>
+    </ol>
+    <p><strong>Postcondiciones:</strong> Publicación visible.</p>
+
+    <h4>CU-08: Compartir una publicación</h4>
+    <p><strong>Actores:</strong> Usuario (alumno/Empleado/Administrador), Sistema</p>
+    <p><strong>Descripción:</strong> Crear una publicación de Usuario para la comunidad.</p>
+    <p><strong>Precondiciones:</strong> Sesión iniciada, permiso para publicar.</p>
+    <p><strong>Flujo principal:</strong></p>
+    <ol>
+      <li>El Usuario redacta el encabezado y contenido (opcional imagen).</li>
+      <li>El Empleado aprueba la publicación.</li>
+      <li>El sistema valida y guarda la publicación (<code>Created_at</code>).</li>
+      <li>El sistema notifica el éxito y dispara notificaciones.</li>
+    </ol>
+    <p><strong>Postcondiciones:</strong> Publicación visible.</p>
+
+    <h4>CU-09: Reaccionar (like) a publicación</h4>
+    <p><strong>Actores:</strong> Usuario, Sistema</p>
+    <p><strong>Descripción:</strong> El usuario da o quita “me gusta” a una publicación.</p>
+    <p><strong>Precondiciones:</strong> Sesión iniciada; publicación existente.</p>
+    <p><strong>Flujo principal:</strong></p>
+    <ol>
+      <li>Usuario toca el botón “like”.</li>
+      <li>El sistema alterna estado (like/unlike) y actualiza contador.</li>
+    </ol>
+    <p><strong>Postcondiciones:</strong> Reacción registrada.</p>
+
+    <h4>CU-10: Comentar publicación</h4>
+    <p><strong>Actores:</strong> Usuario, Sistema</p>
+    <p><strong>Descripción:</strong> El usuario agrega comentario a una publicación.</p>
+    <p><strong>Precondiciones:</strong> Sesión iniciada; publicación existente.</p>
+    <p><strong>Flujo principal:</strong></p>
+    <ol>
+      <li>El sistema valida longitud/formato.</li>
+      <li>El sistema guarda el comentario y muestra en el hilo.</li>
+    </ol>
+    <p><strong>Postcondiciones:</strong> Comentario publicado.</p>
+
+    <h4>CU-11: Crear evento</h4>
+    <p><strong>Actores:</strong> Administrador, Sistema</p>
+    <p><strong>Descripción:</strong> Alta de un evento (título, fecha, descripción).</p>
+    <p><strong>Precondiciones:</strong> Sesión iniciada; permiso de evento.</p>
+    <p><strong>Flujo principal:</strong></p>
+    <ol>
+      <li>El Administrador captura datos del evento.</li>
+      <li>El sistema valida y registra (<code>Created_at</code>).</li>
+      <li>El sistema notifica la creación.</li>
+    </ol>
+    <p><strong>Postcondiciones:</strong> Evento disponible para consulta.</p>
+
+    <h4>CU-12: Consultar eventos</h4>
+    <p><strong>Actores:</strong> Usuario, Sistema</p>
+    <p><strong>Descripción:</strong> Listar y ver detalle de eventos.</p>
+    <p><strong>Precondiciones:</strong> Sesión iniciada.</p>
+    <p><strong>Flujo principal:</strong></p>
+    <ol>
+      <li>Usuario abre “Eventos”.</li>
+      <li>El sistema lista próximos/filtrados.</li>
+      <li>Usuario abre detalle.</li>
+    </ol>
+    <p><strong>Postcondiciones:</strong> Detalle visible.</p>
+
+    <h3>4.2 Diagrama de Clases</h3>
+    <p>
+      Para una mejor visualización del diagrama de clases véase el siguiente enlace:<br />
+      <a href="https://drive.google.com/file/d/11ScvhvzfQNzemA2uMC0wJM22N5da9ewK/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+        Ver diagrama de clases en Google Drive
+      </a>
+    </p>
+
+    <h3>4.3 Diagrama de secuencia</h3>
+
+    <h4>4.3.1 Diagrama de secuencia de REGISTRO</h4>
+    <p>(Ver diagrama correspondiente en el documento original o material gráfico adjunto.)</p>
+
+    <h4>4.3.2 Diagrama de secuencia de INICIO DE SESIÓN</h4>
+    <p>(Ver diagrama correspondiente en el documento original o material gráfico adjunto.)</p>
+
+    <h4>4.3.3 Diagrama de secuencia de CREACIÓN DE FAMILIAS</h4>
+    <p>(Ver diagrama correspondiente en el documento original o material gráfico adjunto.)</p>
+
+    <h4>4.3.4 Diagrama de secuencia para ASIGNAR ALUMNO A FAMILIA</h4>
+    <p>(Ver diagrama correspondiente en el documento original o material gráfico adjunto.)</p>
+
+    <h4>4.3.5 Diagrama de secuencia para PUBLICAR EVENTOS</h4>
+    <p>(Ver diagrama correspondiente en el documento original o material gráfico adjunto.)</p>
+
+    <h3>4.4 Caso de uso general del sistema</h3>
+    <p>(Descripción general del caso de uso global del sistema, según el diagrama general incluido en el documento original.)</p>
+  </section>
+
+</main>
+</body>
+</html>
