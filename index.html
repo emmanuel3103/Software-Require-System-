@@ -1003,155 +1003,249 @@
       <tr><th>Postcondiciones</th><td>Sesión iniciada.</td></tr>
     </table>
 
-    <h4>CU-02: Cerrar sesión</h4>
-    <p><strong>Actores:</strong> Usuario (alumno/empleado), Sistema</p>
-    <p><strong>Descripción:</strong> El usuario finaliza su sesión activa.</p>
-    <p><strong>Precondiciones:</strong> Sesión iniciada.</p>
-    <p><strong>Flujo principal:</strong></p>
-    <ol>
-      <li>El usuario solicita cerrar sesión.</li>
-      <li>El sistema invalida <code>Session_token</code>.</li>
-      <li>El sistema redirige a la pantalla de acceso.</li>
-    </ol>
-    <p><strong>Postcondiciones:</strong> No hay sesión activa.</p>
+   <h4 id="cu-02">CU-02: Cerrar sesión</h4>
 
-    <h4>CU-03: Registrar usuario</h4>
-    <p><strong>Actores:</strong> Administrador, Sistema</p>
-    <p><strong>Descripción:</strong> Empleado autenticado con permiso.</p>
-    <p><strong>Precondiciones:</strong> Sesión iniciada.</p>
-    <p><strong>Flujo principal:</strong></p>
-    <ol>
-      <li>El Empleado ingresa datos obligatorios (matrícula/num. empleado).</li>
-      <li>El sistema valida unicidad (correo, matrícula/num. empleado).</li>
-      <li>El sistema crea cuenta y registra <code>Created_at</code>.</li>
-      <li>El sistema notifica el éxito.</li>
-    </ol>
-    <p><strong>Flujos alternativos:</strong></p>
-    <ul>
-      <li>2a. Datos duplicados o inválidos → mensaje de error.</li>
-    </ul>
-    <p><strong>Postcondiciones:</strong> Usuario creado.</p>
+  <table class="usecase-table">
+    <tr><th>Actores</th><td>Usuario (alumno/empleado), Sistema</td></tr>
+    <tr><th>Descripción</th><td>El usuario finaliza su sesión activa.</td></tr>
+    <tr><th>Precondiciones</th><td>Sesión iniciada.</td></tr>
+    <tr>
+      <th>Flujo principal</th>
+      <td>
+        <ol>
+          <li>El usuario solicita cerrar sesión.</li>
+          <li>El sistema invalida <code>Session_token</code>.</li>
+          <li>El sistema redirige a la pantalla de acceso.</li>
+        </ol>
+      </td>
+    </tr>
+    <tr><th>Postcondiciones</th><td>No hay sesión activa.</td></tr>
+  </table>
 
-    <h4>CU-04: Crear familia</h4>
-    <p><strong>Actores:</strong> Administrador, Sistema</p>
-    <p><strong>Descripción:</strong> Se crea un registro de familia para asociar integrantes.</p>
-    <p><strong>Precondiciones:</strong> Administrador con sesión iniciada.</p>
-    <p><strong>Flujo principal:</strong></p>
-    <ol>
-      <li>El Administrador captura datos básicos de la familia (num.empleado/apellidos).</li>
-      <li>El sistema valida y crea la familia <code>Created_at</code>.</li>
-      <li>El sistema confirma la creación.</li>
-    </ol>
-    <p><strong>Flujos alternativos:</strong></p>
-    <ul>
-      <li>2a. Datos duplicados o inválidos → mensaje de error.</li>
-    </ul>
-    <p><strong>Postcondiciones:</strong> Familia registrada.</p>
 
-    <h4>CU-05: Asignar integrante a familia</h4>
-    <p><strong>Actores:</strong> Administrador, Sistema</p>
-    <p><strong>Descripción:</strong> Asociar un usuario a una familia con su rol (alumno).</p>
-    <p><strong>Precondiciones:</strong> Familia y usuario existentes.</p>
-    <p><strong>Flujo principal:</strong></p>
-    <ol>
-      <li>Empleado busca usuario por matrícula/correo.</li>
-      <li>El Empleado selecciona familia y rol de parentesco.</li>
-      <li>El sistema registra la relación.</li>
-      <li>El sistema confirma.</li>
-    </ol>
-    <p><strong>Flujos alternativos:</strong></p>
-    <ul>
-      <li>1a. Usuario no existe → mensaje y sugerencia de crear.</li>
-    </ul>
-    <p><strong>Postcondiciones:</strong> Integrante asociado.</p>
+  <h4 id="cu-03">CU-03: Registrar usuario</h4>
 
-    <h4>CU-06: Consultar familia</h4>
-    <p><strong>Actores:</strong> Usuario (Alumno/Empleado/Administrador), Sistema</p>
-    <p><strong>Descripción:</strong> Buscar y visualizar la composición de una familia.</p>
-    <p><strong>Precondiciones:</strong> Sesión iniciada.</p>
-    <p><strong>Flujo principal:</strong></p>
-    <ol>
-      <li>Usuario ingresa criterio (matrícula, num. empleado o nombre).</li>
-      <li>El sistema busca y lista coincidencias.</li>
-      <li>Usuario selecciona familia.</li>
-      <li>El sistema muestra integrantes y datos clave.</li>
-    </ol>
-    <p><strong>Flujos alternativos:</strong></p>
-    <ul>
-      <li>2a. Sin resultados → mensaje “no se encontraron coincidencias”.</li>
-    </ul>
-    <p><strong>Postcondiciones:</strong> Información de familia visible.</p>
+  <table class="usecase-table">
+    <tr><th>Actores</th><td>Administrador, Sistema</td></tr>
+    <tr><th>Descripción</th><td>Registrar un usuario autenticado con permiso.</td></tr>
+    <tr><th>Precondiciones</th><td>Sesión iniciada.</td></tr>
+    <tr>
+      <th>Flujo principal</th>
+      <td>
+        <ol>
+          <li>El Administrador ingresa datos obligatorios (matrícula/num. empleado).</li>
+          <li>El sistema valida unicidad (correo, matrícula/num. empleado).</li>
+          <li>El sistema crea la cuenta y registra <code>Created_at</code>.</li>
+          <li>El sistema notifica el éxito.</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <th>Flujos alternativos</th>
+      <td>
+        <ul>
+          <li>2a. Datos duplicados o inválidos → mensaje de error.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr><th>Postcondiciones</th><td>Usuario creado.</td></tr>
+  </table>
 
-    <h4>CU-07: Publicar anuncio</h4>
-    <p><strong>Actores:</strong> Administrador</p>
-    <p><strong>Descripción:</strong> Crear una publicación informativa para la comunidad.</p>
-    <p><strong>Precondiciones:</strong> Sesión iniciada, permiso para publicar.</p>
-    <p><strong>Flujo principal:</strong></p>
-    <ol>
-      <li>El Administrador redacta título y contenido (opcional imagen).</li>
-      <li>El sistema valida y guarda la publicación (<code>Created_at</code>).</li>
-      <li>El sistema notifica el éxito y dispara avisos/notificaciones.</li>
-    </ol>
-    <p><strong>Postcondiciones:</strong> Publicación visible.</p>
+<h4 id="cu-04">CU-04: Crear familia</h4>
 
-    <h4>CU-08: Compartir una publicación</h4>
-    <p><strong>Actores:</strong> Usuario (alumno/Empleado/Administrador), Sistema</p>
-    <p><strong>Descripción:</strong> Crear una publicación de Usuario para la comunidad.</p>
-    <p><strong>Precondiciones:</strong> Sesión iniciada, permiso para publicar.</p>
-    <p><strong>Flujo principal:</strong></p>
-    <ol>
-      <li>El Usuario redacta el encabezado y contenido (opcional imagen).</li>
-      <li>El Empleado aprueba la publicación.</li>
-      <li>El sistema valida y guarda la publicación (<code>Created_at</code>).</li>
-      <li>El sistema notifica el éxito y dispara notificaciones.</li>
-    </ol>
-    <p><strong>Postcondiciones:</strong> Publicación visible.</p>
+<table class="usecase-table">
+  <tr><th>Actores</th><td>Administrador, Sistema</td></tr>
+  <tr><th>Descripción</th><td>Se crea un registro de familia para asociar integrantes.</td></tr>
+  <tr><th>Precondiciones</th><td>Administrador con sesión iniciada.</td></tr>
+  <tr>
+    <th>Flujo principal</th>
+    <td>
+      <ol>
+        <li>El Administrador captura datos básicos de la familia (num. empleado/apellidos).</li>
+        <li>El sistema valida y crea la familia (<code>Created_at</code>).</li>
+        <li>El sistema confirma la creación.</li>
+      </ol>
+    </td>
+  </tr>
+  <tr>
+    <th>Flujos alternativos</th>
+    <td>
+      <ul>
+        <li>2a. Datos duplicados o inválidos → mensaje de error.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr><th>Postcondiciones</th><td>Familia registrada.</td></tr>
+</table>
 
-    <h4>CU-09: Reaccionar (like) a publicación</h4>
-    <p><strong>Actores:</strong> Usuario, Sistema</p>
-    <p><strong>Descripción:</strong> El usuario da o quita “me gusta” a una publicación.</p>
-    <p><strong>Precondiciones:</strong> Sesión iniciada; publicación existente.</p>
-    <p><strong>Flujo principal:</strong></p>
-    <ol>
-      <li>Usuario toca el botón “like”.</li>
-      <li>El sistema alterna estado (like/unlike) y actualiza contador.</li>
-    </ol>
-    <p><strong>Postcondiciones:</strong> Reacción registrada.</p>
+<h4 id="cu-05">CU-05: Asignar integrante a familia</h4>
 
-    <h4>CU-10: Comentar publicación</h4>
-    <p><strong>Actores:</strong> Usuario, Sistema</p>
-    <p><strong>Descripción:</strong> El usuario agrega comentario a una publicación.</p>
-    <p><strong>Precondiciones:</strong> Sesión iniciada; publicación existente.</p>
-    <p><strong>Flujo principal:</strong></p>
-    <ol>
-      <li>El sistema valida longitud/formato.</li>
-      <li>El sistema guarda el comentario y muestra en el hilo.</li>
-    </ol>
-    <p><strong>Postcondiciones:</strong> Comentario publicado.</p>
+<table class="usecase-table">
+  <tr><th>Actores</th><td>Administrador, Sistema</td></tr>
+  <tr><th>Descripción</th><td>Asociar un usuario a una familia con su rol.</td></tr>
+  <tr><th>Precondiciones</th><td>Familia y usuario existentes.</td></tr>
+  <tr>
+    <th>Flujo principal</th>
+    <td>
+      <ol>
+        <li>El Administrador busca usuario por matrícula/correo.</li>
+        <li>Selecciona familia y rol.</li>
+        <li>El sistema registra la relación.</li>
+        <li>El sistema confirma.</li>
+      </ol>
+    </td>
+  </tr>
+  <tr>
+    <th>Flujos alternativos</th>
+    <td>
+      <ul>
+        <li>1a. Usuario no existe → sugerencia de crear.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr><th>Postcondiciones</th><td>Integrante asociado.</td></tr>
+</table>
 
-    <h4>CU-11: Crear evento</h4>
-    <p><strong>Actores:</strong> Administrador, Sistema</p>
-    <p><strong>Descripción:</strong> Alta de un evento (título, fecha, descripción).</p>
-    <p><strong>Precondiciones:</strong> Sesión iniciada; permiso de evento.</p>
-    <p><strong>Flujo principal:</strong></p>
-    <ol>
-      <li>El Administrador captura datos del evento.</li>
-      <li>El sistema valida y registra (<code>Created_at</code>).</li>
-      <li>El sistema notifica la creación.</li>
-    </ol>
-    <p><strong>Postcondiciones:</strong> Evento disponible para consulta.</p>
+<h4 id="cu-06">CU-06: Consultar familia</h4>
 
-    <h4>CU-12: Consultar eventos</h4>
-    <p><strong>Actores:</strong> Usuario, Sistema</p>
-    <p><strong>Descripción:</strong> Listar y ver detalle de eventos.</p>
-    <p><strong>Precondiciones:</strong> Sesión iniciada.</p>
-    <p><strong>Flujo principal:</strong></p>
-    <ol>
-      <li>Usuario abre “Eventos”.</li>
-      <li>El sistema lista próximos/filtrados.</li>
-      <li>Usuario abre detalle.</li>
-    </ol>
-    <p><strong>Postcondiciones:</strong> Detalle visible.</p>
+<table class="usecase-table">
+  <tr><th>Actores</th><td>Usuario (Alumno/Empleado/Administrador), Sistema</td></tr>
+  <tr><th>Descripción</th><td>Visualizar la composición de una familia.</td></tr>
+  <tr><th>Precondiciones</th><td>Sesión iniciada.</td></tr>
+  <tr>
+    <th>Flujo principal</th>
+    <td>
+      <ol>
+        <li>El usuario ingresa criterio de búsqueda.</li>
+        <li>El sistema lista coincidencias.</li>
+        <li>Usuario selecciona familia.</li>
+        <li>El sistema muestra los integrantes.</li>
+      </ol>
+    </td>
+  </tr>
+  <tr>
+    <th>Flujos alternativos</th>
+    <td>
+      <ul>
+        <li>2a. No se encuentran coincidencias.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr><th>Postcondiciones</th><td>Familia visible.</td></tr>
+</table>
+
+<h4 id="cu-07">CU-07: Publicar anuncio</h4>
+
+<table class="usecase-table">
+  <tr><th>Actores</th><td>Administrador</td></tr>
+  <tr><th>Descripción</th><td>Crear una publicación informativa para la comunidad.</td></tr>
+  <tr><th>Precondiciones</th><td>Sesión iniciada y permiso para publicar.</td></tr>
+  <tr>
+    <th>Flujo principal</th>
+    <td>
+      <ol>
+        <li>Redacta título y contenido.</li>
+        <li>El sistema guarda la publicación (<code>Created_at</code>).</li>
+        <li>El sistema notifica y envía avisos.</li>
+      </ol>
+    </td>
+  </tr>
+  <tr><th>Postcondiciones</th><td>Publicación visible.</td></tr>
+</table>
+
+<h4 id="cu-08">CU-08: Compartir una publicación</h4>
+
+<table class="usecase-table">
+  <tr><th>Actores</th><td>Usuario (alumno/empleado/administrador), Sistema</td></tr>
+  <tr><th>Descripción</th><td>Crear una publicación para la comunidad.</td></tr>
+  <tr><th>Precondiciones</th><td>Sesión iniciada y permiso.</td></tr>
+  <tr>
+    <th>Flujo principal</th>
+    <td>
+      <ol>
+        <li>El Usuario redacta contenido.</li>
+        <li>El Empleado aprueba.</li>
+        <li>El sistema guarda (<code>Created_at</code>).</li>
+        <li>El sistema notifica.</li>
+      </ol>
+    </td>
+  </tr>
+  <tr><th>Postcondiciones</th><td>Publicación visible.</td></tr>
+</table>
+
+<h4 id="cu-09">CU-09: Reaccionar a publicación</h4>
+
+<table class="usecase-table">
+  <tr><th>Actores</th><td>Usuario, Sistema</td></tr>
+  <tr><th>Descripción</th><td>Registrar un “me gusta”.</td></tr>
+  <tr><th>Precondiciones</th><td>Sesión iniciada; publicación existente.</td></tr>
+  <tr>
+    <th>Flujo principal</th>
+    <td>
+      <ol>
+        <li>Usuario toca “like”.</li>
+        <li>El sistema alterna estado y actualiza conteo.</li>
+      </ol>
+    </td>
+  </tr>
+  <tr><th>Postcondiciones</th><td>Reacción registrada.</td></tr>
+</table>
+
+<h4 id="cu-10">CU-10: Comentar publicación</h4>
+
+<table class="usecase-table">
+  <tr><th>Actores</th><td>Usuario, Sistema</td></tr>
+  <tr><th>Descripción</th><td>El usuario agrega un comentario.</td></tr>
+  <tr><th>Precondiciones</th><td>Sesión iniciada; publicación existente.</td></tr>
+  <tr>
+    <th>Flujo principal</th>
+    <td>
+      <ol>
+        <li>El sistema valida longitud/formato.</li>
+        <li>Guarda el comentario y lo muestra.</li>
+      </ol>
+    </td>
+  </tr>
+  <tr><th>Postcondiciones</th><td>Comentario publicado.</td></tr>
+</table>
+
+<h4 id="cu-11">CU-11: Crear evento</h4>
+
+<table class="usecase-table">
+  <tr><th>Actores</th><td>Administrador, Sistema</td></tr>
+  <tr><th>Descripción</th><td>Alta de un evento institucional.</td></tr>
+  <tr><th>Precondiciones</th><td>Sesión iniciada; permiso para eventos.</td></tr>
+  <tr>
+    <th>Flujo principal</th>
+    <td>
+      <ol>
+        <li>Captura datos del evento.</li>
+        <li>El sistema valida y registra (<code>Created_at</code>).</li>
+        <li>Notifica la creación.</li>
+      </ol>
+    </td>
+  </tr>
+  <tr><th>Postcondiciones</th><td>Evento registrado.</td></tr>
+</table>
+
+<h4 id="cu-12">CU-12: Consultar eventos</h4>
+
+<table class="usecase-table">
+  <tr><th>Actores</th><td>Usuario, Sistema</td></tr>
+  <tr><th>Descripción</th><td>Listar y ver detalle de eventos.</td></tr>
+  <tr><th>Precondiciones</th><td>Sesión iniciada.</td></tr>
+  <tr>
+    <th>Flujo principal</th>
+    <td>
+      <ol>
+        <li>Usuario abre “Eventos”.</li>
+        <li>El sistema lista próximos.</li>
+        <li>Usuario abre detalle.</li>
+      </ol>
+    </td>
+  </tr>
+  <tr><th>Postcondiciones</th><td>Detalle visible.</td></tr>
+</table>
 
     <h3>4.2 Diagrama de Clases</h3>
     <p>
@@ -1185,6 +1279,7 @@
 </main>
 </body>
 </html>
+
 
 
 
