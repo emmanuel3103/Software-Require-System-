@@ -974,23 +974,34 @@
 
     <h3>4.1 Casos de uso</h3>
 
-    <h4>CU-01: Iniciar sesión</h4>
-    <p><strong>Actores:</strong> Usuario (alumno/empleado), Sistema</p>
-    <p><strong>Descripción:</strong> El usuario accede con correo y contraseña.</p>
-    <p><strong>Precondiciones:</strong> Usuario registrado y activo.</p>
-    <p><strong>Flujo principal:</strong></p>
-    <ol>
-      <li>El usuario ingresa correo y contraseña.</li>
-      <li>El sistema valida credenciales.</li>
-      <li>El sistema genera <code>Session_token</code> y establece sesión.</li>
-      <li>El sistema muestra pantalla principal.</li>
-    </ol>
-    <p><strong>Flujos alternativos:</strong></p>
-    <ul>
-      <li>2a. Credenciales inválidas → muestra error, permite reintentar.</li>
-      <li>2b. Usuario inactivo.</li>
-    </ul>
-    <p><strong>Postcondiciones:</strong> Sesión iniciada.</p>
+    <<h4 id="cu-01">CU-01: Iniciar sesión</h4>
+
+    <table class="usecase-table">
+      <tr><th>Actores</th><td>Usuario (alumno/empleado), Sistema</td></tr>
+      <tr><th>Descripción</th><td>El usuario accede con correo y contraseña.</td></tr>
+      <tr><th>Precondiciones</th><td>Usuario registrado y activo.</td></tr>
+      <tr>
+        <th>Flujo principal</th>
+        <td>
+          <ol>
+            <li>El usuario ingresa correo y contraseña.</li>
+            <li>El sistema valida credenciales.</li>
+            <li>El sistema genera <code>Session_token</code> y establece sesión.</li>
+            <li>El sistema muestra la pantalla principal.</li>
+          </ol>
+        </td>
+      </tr>
+      <tr>
+        <th>Flujos alternativos</th>
+        <td>
+          <ul>
+            <li>2a. Credenciales inválidas → muestra error, permite reintentar.</li>
+            <li>2b. Usuario inactivo.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr><th>Postcondiciones</th><td>Sesión iniciada.</td></tr>
+    </table>
 
     <h4>CU-02: Cerrar sesión</h4>
     <p><strong>Actores:</strong> Usuario (alumno/empleado), Sistema</p>
@@ -1174,6 +1185,7 @@
 </main>
 </body>
 </html>
+
 
 
 
